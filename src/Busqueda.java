@@ -32,7 +32,7 @@ public class Busqueda extends JFrame {
 
     public void iniciar() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(350, 200);
+        setSize(550, 500);
         setVisible(true);
     }
 
@@ -45,12 +45,9 @@ public class Busqueda extends JFrame {
             Connection conn = DriverManager.getConnection(URL, userDB, password);
             String query = "select * from PACIENTE WHERE cedula= ?;";
             PreparedStatement search = conn.prepareStatement(query);
-            ResultSet rs = search.executeQuery();
-
             String CEDULA = CedulaBus.getText();
-
             search.setString(1, CEDULA);
-
+            ResultSet rs = search.executeQuery();
             while (rs.next()) {
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
